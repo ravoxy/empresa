@@ -6,8 +6,8 @@ CREATE TABLE usuario
     status_usuario character varying(255) NOT NULL,
     version timestamp without time zone NOT NULL,
     situacao character varying NOT NULL,
-    CONSTRAINT usuario_pkey PRIMARY KEY (id_usuario)  
-    
+    CONSTRAINT usuario_pkey PRIMARY KEY (id_usuario)
+
 );
 
 CREATE TABLE empresa
@@ -16,7 +16,7 @@ CREATE TABLE empresa
     descricao character varying(255) ,
     version timestamp without time zone NOT NULL,
     situacao character varying  NOT NULL,
-    CONSTRAINT empresa_pkey PRIMARY KEY (id_empresa)    
+    CONSTRAINT empresa_pkey PRIMARY KEY (id_empresa)
 );
 
 
