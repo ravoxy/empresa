@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,8 +21,10 @@ public class UsuarioEmpresa {
 
     private LocalDate version;
 
+    @ManyToOne
     private Empresa empresa;
 
+    @ManyToOne
     private Usuario usuario;
 
     @Enumerated(EnumType.STRING)
