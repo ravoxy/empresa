@@ -42,6 +42,7 @@ public class UsuarioService {
         usuarioEmpresaRepository.save(usuarioEmpresa);
     }
 
+    @Transactional
     public void deletar(Long id) {
         usuarioRepository.deleteById(id);
     }

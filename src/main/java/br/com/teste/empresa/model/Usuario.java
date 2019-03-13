@@ -1,7 +1,10 @@
 package br.com.teste.empresa.model;
 
+import static javax.persistence.CascadeType.REMOVE;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -31,6 +35,9 @@ public class Usuario implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private Situacao situacao;
+
+    @OneToMany(mappedBy = "usuarioEmpresa", cascade = REMOVE)
+    private List<UsuarioEmpresa> usuarioEmpresas;
 
     public Long getIdUsuario() {
         return idUsuario;
@@ -78,6 +85,14 @@ public class Usuario implements Serializable {
 
     public void setSituacao(Situacao situacao) {
         this.situacao = situacao;
+    }
+
+    public List<UsuarioEmpresa> getUsuarioEmpresas() {
+        return usuarioEmpresas;
+    }
+
+    public void setUsuarioEmpresas(List<UsuarioEmpresa> usuarioEmpresas) {
+        this.usuarioEmpresas = usuarioEmpresas;
     }
 
     @Override

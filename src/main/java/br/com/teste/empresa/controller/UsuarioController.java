@@ -55,7 +55,7 @@ public class UsuarioController {
     }
 
     @RequestMapping(value = "{codigo}", method = RequestMethod.DELETE)
-    public String excluir(@PathVariable Long codigo, RedirectAttributes attributes) {
+    public String excluir(@PathVariable Long codigo) {
         usuarioService.deletar(codigo);
         return "redirect:/usuarios";
     }
