@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{LayoutPadrao}">
+
+<head>
+    <title>Cadastro de Usuário</title>
+</head>
+<body>
+<section layout:fragment="conteudo">
+    <div class="container">
+        <form method="POST" action="/usuarios" th:object="${usuario}">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="clearfix">
+                        <h1 class="panel-title aw-title-panel">Novo Usuário</h1>
+                        <a class="btn btn-link aw-link-panel" href="/usuarios">Voltar para pesquisa</a>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <input type="hidden" th:field="*{idUsuario}"/>
+
+                    <div>
+                        <label for="email">E-mail</label>
+                        <div>
+                            <input type="text" id="email" th:field="*{email}"/>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="senha">Senha</label>
+                        <div>
+                            <input type="text" id="senha" th:field="*{senha}"/>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="status">status</label>
+                        <div>
+                            <input type="text" id="Status" th:field="*{statusUsuario}"/>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="empresa">Empresa</label>
+                        <div>
+                            <select id="empresa" name="empresa">
+                                <option th:each="empresa : ${empresas}" th:value="${empresa}" th:text="${empresa.descricao}"/>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="situacao">Situação</label>
+                        <div>
+                            <select id="situacao" name="situacao">
+                                <option th:each="situacao : ${situacoes}" th:value="${{situacao}}" th:text="${situacao.descricao}"/>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

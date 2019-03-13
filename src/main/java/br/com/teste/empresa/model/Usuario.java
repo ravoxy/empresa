@@ -1,6 +1,7 @@
 package br.com.teste.empresa.model;
 
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,14 +9,16 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Usuario")
-public class Usuario {
+@Table(name = "usuario")
+public class Usuario implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario_seq")
+    @SequenceGenerator(name = "usuario_seq", sequenceName = "usuario_seq")
     private Long idUsuario;
 
     private String email;
@@ -24,7 +27,7 @@ public class Usuario {
 
     private String statusUsuario;
 
-    private LocalDate version;
+    private LocalDateTime version;
 
     @Enumerated(EnumType.STRING)
     private Situacao situacao;
@@ -61,11 +64,11 @@ public class Usuario {
         this.statusUsuario = statusUsuario;
     }
 
-    public LocalDate getVersion() {
+    public LocalDateTime getVersion() {
         return version;
     }
 
-    public void setVersion(LocalDate version) {
+    public void setVersion(LocalDateTime version) {
         this.version = version;
     }
 

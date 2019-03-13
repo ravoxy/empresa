@@ -1,6 +1,7 @@
 package br.com.teste.empresa.model;
 
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,19 +9,21 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "empresa")
-public class Empresa {
+public class Empresa implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empresa_seq")
+    @SequenceGenerator(name = "empresa_seq", sequenceName = "empresa_seq")
     private Long idEmpresa;
 
     private String descricao;
 
-    private LocalDate version;
+    private LocalDateTime version;
 
     @Enumerated(EnumType.STRING)
     private Situacao situacao;
@@ -41,11 +44,11 @@ public class Empresa {
         this.descricao = descricao;
     }
 
-    public LocalDate getVersion() {
+    public LocalDateTime getVersion() {
         return version;
     }
 
-    public void setVersion(LocalDate version) {
+    public void setVersion(LocalDateTime version) {
         this.version = version;
     }
 
@@ -70,5 +73,10 @@ public class Empresa {
     @Override
     public int hashCode() {
         return idEmpresa.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return idEmpresa.toString();
     }
 }

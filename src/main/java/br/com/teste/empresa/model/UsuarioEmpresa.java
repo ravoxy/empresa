@@ -1,6 +1,7 @@
 package br.com.teste.empresa.model;
 
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,29 +9,34 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "emprUsuarioEmpresaesa")
-public class UsuarioEmpresa {
+@Table(name = "usuarioEmpresa")
+public class UsuarioEmpresa implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario_empresa_seq")
+    @SequenceGenerator(name = "usuario_empresa_seq", sequenceName = "usuario_empresa_seq")
     private Long idUsuarioEmpresa;
 
-    private LocalDate version;
+    private LocalDateTime version;
 
     @ManyToOne
+    @JoinColumn(name = "idEmpresa")
     private Empresa empresa;
 
     @ManyToOne
+    @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 
     @Enumerated(EnumType.STRING)
     private Situacao situacao;
 
-    private LocalDate ultimologon;
+    private LocalDateTime ultimologon;
 
     public Long getIdUsuarioEmpresa() {
         return idUsuarioEmpresa;
@@ -40,11 +46,11 @@ public class UsuarioEmpresa {
         this.idUsuarioEmpresa = idUsuarioEmpresa;
     }
 
-    public LocalDate getVersion() {
+    public LocalDateTime getVersion() {
         return version;
     }
 
-    public void setVersion(LocalDate version) {
+    public void setVersion(LocalDateTime version) {
         this.version = version;
     }
 
@@ -72,11 +78,11 @@ public class UsuarioEmpresa {
         this.situacao = situacao;
     }
 
-    public LocalDate getUltimologon() {
+    public LocalDateTime getUltimologon() {
         return ultimologon;
     }
 
-    public void setUltimologon(LocalDate ultimologon) {
+    public void setUltimologon(LocalDateTime ultimologon) {
         this.ultimologon = ultimologon;
     }
 

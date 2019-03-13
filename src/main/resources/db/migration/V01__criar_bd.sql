@@ -19,7 +19,6 @@ CREATE TABLE empresa
     CONSTRAINT empresa_pkey PRIMARY KEY (id_empresa)
 );
 
-
 CREATE TABLE usuario_empresa
 (
     id_usuario_empresa bigint NOT NULL,
@@ -38,3 +37,7 @@ CREATE TABLE usuario_empresa
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 );
+
+CREATE SEQUENCE empresa_seq START 1;
+CREATE SEQUENCE usuario_seq START 1;
+CREATE SEQUENCE usuario_empresa_seq START 1;

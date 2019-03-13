@@ -13,8 +13,8 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="clearfix">
-                <h1 class="panel-title aw-title-panel">Pesquisa de títulos</h1>
-                <a class="btn btn-link aw-link-panel" href="/usuarios/novo">Novo Úsuario</a>
+                <h1 class="panel-title aw-title-panel">Pesquisa de Usuário</h1>
+                <a class="btn btn-link aw-link-panel" href="/usuarios/novo">Novo</a>
             </div>
         </div>
 
@@ -22,25 +22,34 @@
             <table class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th class="text-center col-md-1">#</th>
-                    <th>E-mail</th>
-                    <th>Situação</th>
-                    <th></th>
+                    <th class="text-center">#</th>
+                    <th class="text-center">E-mail</th>
+                    <th class="text-center">Situação</th>
+                    <th class="text-center"></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="usuario : ${usuarios}">
                     <td class="text-center" th:text="${usuario.idUsuario}">1</td>
                     <td th:text="${usuario.email}"></td>
-                    <td class="text-center" th:text="${{usuario.situacao.name}}"></td>
+                    <td class="text-center" th:text="${usuario.situacao}"></td>
+                    <td class="text-center">
+                        <a class="btn-link col-6" th:href="@{/usuarios/{codigo}(codigo=${usuario.idUsuario})}">
+                            <label>Editar</label>
+                        </a>
+                        <a class="btn-link col-6" href="#" data-toggle="modal" data-target="#confirmacaoExclusaoModal" th:attr="data-codigo=${usuario.idUsuario}">
+                            <label>Excluir</label>
+                        </a>
+                    </td>
                 </tr>
                 <tr>
-                    <td colspan="6" th:if="${#lists.isEmpty(usuarios)}">Nenhum título foi encontrado</td>
+                    <td colspan="6" th:if="${#lists.isEmpty(usuarios)}">Nenhum Usuário foi encontrado</td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
+    <div layout:insert="~{DialogoConfirmacaoExclusao}"></div>
 </section>
 </body>
 </html>
