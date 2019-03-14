@@ -12,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -36,7 +37,7 @@ public class Usuario implements Serializable {
     @Enumerated(EnumType.STRING)
     private Situacao situacao;
 
-    @OneToMany(mappedBy = "usuarioEmpresa", cascade = REMOVE)
+    @OneToMany(mappedBy = "usuario", cascade = REMOVE)
     private List<UsuarioEmpresa> usuarioEmpresas;
 
     public Long getIdUsuario() {

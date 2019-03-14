@@ -7,11 +7,13 @@
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
 </head>
 <body>
-<header layout:insert="~{Cabecalho}"/>
 
-<section layout:fragment="conteudo">
-    <p>Conteúdo Principal</p>
-</section>
+<header layout:insert="~{Cabecalho}"/>
+<main class="container">
+    <section layout:fragment="conteudo">
+        <p>Conteúdo Principal</p>
+    </section>
+</main>
 
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
